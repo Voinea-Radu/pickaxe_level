@@ -25,7 +25,9 @@ public class Utils {
         File file = new File(Bukkit.getServer().getPluginManager().getPlugin(PickaxeLevel.NAME).getDataFolder(), path);
         try {
             if (!file.exists()) {
-                file.createNewFile();
+                boolean created = file.createNewFile();
+                if (created)
+                    PickaxeLevel.logger.info(path + " created!");
             }
             config.save(file);
         } catch (IOException e) {

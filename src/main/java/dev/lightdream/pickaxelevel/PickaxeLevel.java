@@ -16,16 +16,6 @@ public final class PickaxeLevel extends JavaPlugin {
     public static FileConfiguration config;
     public static HashMap<Integer, HashMap<Integer, String>> levelMap = new HashMap<>();
 
-    public static double getLevel(double xp) {
-        if (xp == 0)
-            return 0;
-        return log((13 * xp + 1599) / (13000 - 1000 * Math.pow(130, 1.0 / 2.0)), 13.0 / 10.0);
-    }
-
-    public static double log(double a, double b) {
-        return Math.log(a) / Math.log(b);
-    }
-
     @Override
     public void onEnable() {
         INSTANCE = this;
