@@ -1,0 +1,3 @@
+name: PickaxeLevel
+version: ${project.version}
+main: dev.lightdream.pickaxelevel.PickaxeLevel
