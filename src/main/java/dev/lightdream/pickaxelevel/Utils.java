@@ -20,22 +20,6 @@ public class Utils {
         }
     }
 
-    public static void saveFile(FileConfiguration config, String path) {
-
-        File file = new File(Bukkit.getServer().getPluginManager().getPlugin(PickaxeLevel.NAME).getDataFolder(), path);
-        try {
-            if (!file.exists()) {
-                boolean created = file.createNewFile();
-                if (created)
-                    PickaxeLevel.logger.info(path + " created!");
-            }
-            config.save(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }
-    }
-
     public static FileConfiguration loadFile(String path) {
 
         File file = new File(Bukkit.getServer().getPluginManager().getPlugin(PickaxeLevel.NAME).getDataFolder(), path);

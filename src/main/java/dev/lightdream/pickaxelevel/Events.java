@@ -50,11 +50,11 @@ public class Events implements Listener {
 
         String search = "";
 
-        for(String configLine : (List<String>)PickaxeLevel.config.getList("lore"))
-            if(configLine.contains("%level%"))
+        for (String configLine : (List<String>) PickaxeLevel.config.getList("lore"))
+            if (configLine.contains("%level%"))
                 search = configLine;
         search = Utils.color(search).replace("%level%", "");
-        if(!search.equals(""))
+        if (!search.equals(""))
             for (String line : lore)
                 if (line.contains(search))
                     level = Integer.parseInt(line.replace(search, ""));
@@ -66,31 +66,17 @@ public class Events implements Listener {
 
 
         if (brokenBlocks > nextLevelBlocks) {
-            for(String command : PickaxeLevel.levelMap.get(level + 1).get(nextLevelBlocks))
+            for (String command : PickaxeLevel.levelMap.get(level + 1).get(nextLevelBlocks))
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), PlaceholderAPI.setPlaceholders(player, command));
             level++;
         }
 
-
-        /*
-        List<String> remove = new ArrayList<>();
-
-
-        for(String line : lore)
-            for(String lineConfig : (List<String>) PickaxeLevel.config.getList("lore"))
-                if(line.contains(Utils.color(lineConfig.replace("%blocks%", "").replace("%levels%", ""))))
-                    remove.add(line);
-
-        lore.removeAll(remove);
-
-         */
-
         lore = new ArrayList<>();
 
-        for(Enchantment e : item.getEnchantments().keySet())
+        for (Enchantment e : item.getEnchantments().keySet())
             System.out.println(e.getName() + " " + item.getEnchantments().get(e));
 
-        for(String line : (List<String>) PickaxeLevel.config.getList("lore"))
+        for (String line : (List<String>) PickaxeLevel.config.getList("lore"))
             lore.add(PlaceholderAPI.setPlaceholders(player, line.replace("%blocks%", String.valueOf(brokenBlocks)).replace("%level%", String.valueOf(level))));
 
         meta.setLore(lore);
