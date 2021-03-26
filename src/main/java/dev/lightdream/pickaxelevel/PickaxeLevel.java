@@ -3,6 +3,8 @@ package dev.lightdream.pickaxelevel;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
@@ -14,7 +16,7 @@ public final class PickaxeLevel extends JavaPlugin {
     public static Logger logger;
     public static PickaxeLevel INSTANCE;
     public static FileConfiguration config;
-    public static HashMap<Integer, HashMap<Integer, String>> levelMap = new HashMap<>();
+    public static HashMap<Integer, HashMap<Integer, List<String>>> levelMap = new HashMap<>();
 
     @Override
     public void onEnable() {
@@ -25,10 +27,13 @@ public final class PickaxeLevel extends JavaPlugin {
 
         List<String> list = (List<String>) config.getList("levels");
         for (int i = 0; i < list.size(); i++) {
-            HashMap<Integer, String> map = new HashMap<>();
+            HashMap<Integer, List<String>> map = new HashMap<>();
             String[] str = list.get(i).split("\\|");
             try {
-                map.put(Integer.parseInt(str[0]), str[1]);
+                List<String> commands = new ArrayList<>();
+                Collections.addAll(commands, str);
+                commands.remove(str[0]);
+                map.put(Integer.parseInt(str[0]), commands);
             } catch (NumberFormatException e) {
                 logger.severe("Unable to parse " + str[0]);
                 e.printStackTrace();

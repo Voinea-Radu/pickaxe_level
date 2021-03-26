@@ -1,10 +1,12 @@
-broken-blocks-lore: "&fBroken blocks: %blocks%"
-level-lore: "&fLevel: %level%"
-
+lore:
+  - "-------------------------"
+  - "&fBroken blocks: %blocks%"
+  - "&fLevel: %level%"
+  - "-------------------------"
 
 levels:
   - "0| " #This line is mandatory
-  - "100|give %player_name% diamond_block 1"
+  - "100|give %player_name% diamond_block 1|give %player_name% gold_block 1"
   - "200|give %player_name% diamond_block 1"
   - "300|give %player_name% diamond_block 1"
   - "400|give %player_name% diamond_block 1"
